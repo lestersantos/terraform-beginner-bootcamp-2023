@@ -314,3 +314,9 @@ Provide the following code (replace your token in the file):
   }
 }
 ```
+
+#### Terraform tfrc crediantals
+We have automated this workaround with the following bash script
+[bin/generate_tfr_credentials](bin/generate_tfrc_credentials) 
+
+
