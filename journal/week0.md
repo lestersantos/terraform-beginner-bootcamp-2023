@@ -1,6 +1,6 @@
 # Terraform Beginner Bootcamp 2023 - Week 0
 
-- [Semantic Versioning :mage:](#semantic-versioning--mage-)
+- [Semantic Versioning](#semantic-versioning)
 - [Install the Terraform CLI](#install-the-terraform-cli)
   * [Considerations with the Terraform CLI changes](#considerations-with-the-terraform-cli-changes)
   * [Consideration for Linux Distribution](#consideration-for-linux-distribution)
@@ -9,14 +9,14 @@
   * [Shebang Considerations](#shebang-considerations)
   * [Execution Considerations](#execution-considerations)
   * [Linux Permissions Considerations](#linux-permissions-considerations)
-- [Gitpod Workspaces - Gitpod tasks (Before, Init, Command)](#gitpod-workspaces---gitpod-tasks--before--init--command-)
-  * [Working Env Vars](#working-env-vars)
-    + [env command](#env-command)
+- [Gitpod Workspaces - Gitpod tasks - Before, Init, Command](#gitpod-workspaces---gitpod-tasks---before--init--command)
+- [Working Env Vars](#working-env-vars)
+  * [env command](#env-command)
   * [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
-      - [Printing vars](#printing-vars)
-    + [Scoping of Env Vars](#scoping-of-env-vars)
-    + [Persisiting Env Vars in Gitpod](#persisiting-env-vars-in-gitpod)
-  * [AWS CLI Installation](#aws-cli-installation)
+  * [Printing vars](#printing-vars)
+  * [Scoping of Env Vars](#scoping-of-env-vars)
+  * [Persisiting Env Vars in Gitpod](#persisiting-env-vars-in-gitpod)
+- [AWS CLI Installation](#aws-cli-installation)
 - [Terraform Basics](#terraform-basics)
   * [Terraform Registry](#terraform-registry)
   * [Terraform Console](#terraform-console)
@@ -28,9 +28,9 @@
     + [Terraform State Files](#terraform-state-files)
     + [Terraform Directory](#terraform-directory)
 - [Issues with Terraform Cloud Login and Gitpod Workspace](#issues-with-terraform-cloud-login-and-gitpod-workspace)
-    + [Terraform tfrc crediantals](#terraform-tfrc-crediantals)
+  * [Terraform tfrc crediantals](#terraform-tfrc-crediantals)
 
-## Semantic Versioning :mage:
+## Semantic Versioning
 
 This project is going to utilize semantic versioning for its tagging.
 [semver.org](https://semver.org/)
@@ -132,15 +132,15 @@ chmod 744 ./bin/install_terraform_cli
 
 [Chmod permmissions ](https://en.wikipedia.org/wiki/Chmod)
 
-## Gitpod Workspaces - Gitpod tasks (Before, Init, Command)
+## Gitpod Workspaces - Gitpod tasks - Before, Init, Command
 
 We need to be careful when using the init because it will not rerun if we restart an existing workspace.
 
 [Gitpod Workspaces Tasks](https://www.gitpod.io/docs/configure/workspaces/tasks#prebuild-and-new-workspaces)
 
-### Working Env Vars
+## Working Env Vars
 
-#### env command
+### env command
 
 We can list out all Enviroment Variables (Env Vars) using the `env` command
 
@@ -166,11 +166,11 @@ HELLO='world'
 echo $HELLO
 ```
 
-##### Printing vars
+### Printing vars
 
 we can print an env var using echo eg. `echo $HELLO`
 
-#### Scoping of Env Vars
+### Scoping of Env Vars
 
 When you open up new bash terminals in VSCode it will not be ware of env vars that you
 have set in another window.
@@ -178,7 +178,7 @@ have set in another window.
 If you want to Env Vars to persist across all future bash terminals that are open
 you need to set env vars in your bash profile. eg. `.bash_profile`
 
-#### Persisiting Env Vars in Gitpod
+### Persisiting Env Vars in Gitpod
 
 We can persist env vars into gitpod by storing them in Gitpod Secrets Storage.
 
@@ -191,7 +191,7 @@ All future workspaces launched will set the env vars for all bash terminals open
 You can also set env vars in the `.gitpod.yml` but this can only contain non-sensitive env
 vars.
 
-### AWS CLI Installation
+## AWS CLI Installation
 
 AWS CLI is installed for this project via the bash script [`./bin/install_aws_cli`](//bin/install_aws_cli)
 
@@ -345,7 +345,7 @@ Provide the following code (replace your token in the file):
 }
 ```
 
-#### Terraform tfrc crediantals
+### Terraform tfrc crediantals
 We have automated this workaround with the following bash script
 [bin/generate_tfr_credentials](bin/generate_tfrc_credentials) 
 
