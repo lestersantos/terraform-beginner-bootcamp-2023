@@ -9,7 +9,7 @@
   * [Shebang Considerations](#shebang-considerations)
   * [Execution Considerations](#execution-considerations)
   * [Linux Permissions Considerations](#linux-permissions-considerations)
-- [Gitpod Workspaces - Gitpod tasks - Before, Init, Command](#gitpod-workspaces---gitpod-tasks---before--init--command)
+- [Gitpod Workspaces - Gitpod tasks - Before, Init, Command](#gitpod-workspaces---gitpod-tasks---before-init-command)
 - [Working Env Vars](#working-env-vars)
   * [env command](#env-command)
   * [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
