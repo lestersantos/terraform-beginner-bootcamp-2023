@@ -110,3 +110,31 @@ If any variable from the worksapce has the same key as a variable in the file, t
 - Terraform Cloud loads variables from files for each terraform run,
 - Those variables does not automatically persist to the TFC workspace
 - Those variables ar not display in the Variables section of the UI
+
+## Dealing with Configuration Drift
+
+## What happens if we lose our state file?
+
+If you lose your statefile, you most likely have to tear down all your cloud infraestructure manually.
+
+You can use terraform `import` but it won't work for all cloud resources. You need to check the terraform providers documentation.
+For which resources support import.
+
+### Fix Missing Resources with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+```bash
+terraform import aws_s3_bucket.example gnk0dzrm7pj69v5td9qmot5rpgbl86dp
+```
+
+[Terraform Import](https://developer.hashicorp.com/terraform/language/import)
+[Terraform Import AWS S3 Bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix Manual Configuration
+
+If someone goes and delete or modifies cloud resources manually through clickops.
+
+If we run Terraform plan it will attempt to put our infraestructure back into
+the expected state fixing Configuration Drift.
+
