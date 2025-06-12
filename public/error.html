@@ -1,1 +1,36 @@
-Error found!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Page Not Found</title>
+    <!-- Link to Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for better aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <!-- Main container for the error message, centered and with rounded corners -->
+    <div class="bg-white p-8 rounded-lg shadow-md text-center max-w-md w-full">
+        <!-- Error heading -->
+        <h1 class="text-5xl font-extrabold text-red-600 mb-4 rounded-md p-2">
+            Oops!
+        </h1>
+        <!-- Error message -->
+        <p class="text-gray-800 text-2xl mb-6">
+            Something went wrong.
+        </p>
+        <p class="text-gray-600 text-lg">
+            The page you are looking for might be unavailable or does not exist.
+        </p>
+        <!-- Button to go back to home, styled for better interaction -->
+        <a href="/" class="mt-8 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out shadow-md">
+            Go to Homepage
+        </a>
+    </div>
+</body>
+</html>
