@@ -36,3 +36,12 @@ variable "error_html_filepath" {
     error_message = "The specified error.html file path does not exist or is not accessible. Please provide a valid absolute path."
   }
 }
+variable "content_version" {
+  description = "The version of the content, must be a positive integer starting from 1."
+  type        = number
+
+  validation {
+    condition     = var.content_version >= 1 && floor(var.content_version) == var.content_version
+    error_message = "The content_version must be a positive integer and greater than or equal to 1."
+  }
+}
