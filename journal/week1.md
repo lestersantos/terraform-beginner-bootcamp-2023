@@ -46,10 +46,10 @@ PROJECT_ROOT
 ### Terraform Cloud Variables
 
 In terraform we can set two kind of variables:
-- Enviroment Variables - those you would set in your bash terminal eg.AWS credentials
+- Environment Variables - those you would set in your bash terminal eg.AWS credentials
 - Terraform Variables - those that you would normally set in your tfvars file
 
-We can set Terraform Cloud variables to be sensitive so they are not shown visibliy in the UI.
+We can set Terraform Cloud variables to be sensitive so they are not shown visible in the UI.
 
 ### Loading Terraform Input Variables
 [Terraform Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
@@ -59,7 +59,7 @@ We can use the `-var` flag to set an input variable or override a variable in th
 
 ### var-file flag
 
-[Variable Definitioins .tfvars Files](https://developer.hashicorp.com/terraform/language/values/variables)
+[Variable Definitions .tfvars Files](https://developer.hashicorp.com/terraform/language/values/variables)
 
 To set lots of variables, it is more convenient to specify their values in a variable definitions file (with a filename ending in either `.tfvars` or `.tfvars.json`) and then specify that file on the
 command line with -var-file:
@@ -74,7 +74,7 @@ This is the default file to load in terraform variables in blunk
 
 ### auto.tfvars
 
-Terraform also automatically loads a number of variable definitions files if they are present.
+Terraform also automatically loads a number of variable definition files if they are present.
 
 Any files with names ending in `.auto.tfvars` or `.auto.tfvars.json`,
 so it is possible to name your file whatever you wish and have Terraform load it
@@ -101,7 +101,7 @@ Terraform loads variables in the following order, with later sources taking prec
 - `terraform.tfvars` file, if present.
 - `terraform.tfvars.json` file, if present.
 - Any `*.auto.tfvars` or `*.auto.tfvars.json` files, processed in lexical order of their filenames.
-- Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud worksapce.)
+- Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
 
 ### Order of terraform cloud variables
 
@@ -113,7 +113,7 @@ Terraform Cloud prioritizes and overwrites conflicting variables according to th
 2. Priority Project-Scoped Variable Sets
 3. Priority Workspace-Scoped Variable Sets
 4. Command Line Argument Variables
-5. Local Enviroment Variables Prefixed with `TF_VAR_`
+5. Local Environment Variables Prefixed with `TF_VAR_`
 6. Workspace-Specific Variables
 7. Workspace-Scoped Variable Sets
 8. Project-Scoped Variable Sets
@@ -128,9 +128,9 @@ Terraform Cloud prioritizes and overwrites conflicting variables according to th
 [Loading Variables from files](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables/managing-variables#loading-variables-from-files)
 
 You can set Terraform variable values by providing any number of files ending in `.auto.tfvars`
-to worksapces that use Terraform 0.10.0 or later. When you trigger a run, Terraform
+to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform
 automatically loads and uses the variables defined in these files. 
-If any variable from the worksapce has the same key as a variable in the file, the `workspace` variable overwrites variable from the file.
+If any variable from the workspace has the same key as a variable in the file, the `workspace` variable overwrites the variable from the file.
 
 - Terraform Cloud loads variables from files for each terraform run,
 - Those variables does not automatically persist to the TFC workspace
@@ -140,7 +140,7 @@ If any variable from the worksapce has the same key as a variable in the file, t
 
 ## What happens if we lose our state file?
 
-If you lose your statefile, you most likely have to tear down all your cloud infraestructure manually.
+If you lose your statefile, you most likely have to tear down all your cloud infrastructure manually.
 
 You can use terraform `import` but it won't work for all cloud resources. You need to check the terraform providers documentation.
 For which resources support import.
@@ -160,7 +160,7 @@ terraform import aws_s3_bucket.example gnk0dzrm7pj69v5td9qmot5rpgbl86dp
 
 If someone goes and delete or modifies cloud resources manually through clickops.
 
-If we run Terraform plan it will attempt to put our infraestructure back into the expected state fixing Configuration Drift.
+If we run Terraform plan it will attempt to put our infrastructure back into the expected state fixing Configuration Drift.
 
 ## Fix using Terraform Refresh
 
@@ -311,7 +311,7 @@ Plain data values such as Local Values and Input Variables don't have any side-e
 
 [Terraform Provisioners](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax#provisioners-are-a-last-resort)
 
-Provisioners allow you to execute commandso on compute instances eg. a AWS CLI command.
+Provisioners allow you to execute commands on compute instances eg. a AWS CLI command.
 
 They are not recommended for use by Hashicorp because Configuration Management tools such as Ansible are better fit, but the functionality exists.
 
@@ -319,7 +319,7 @@ They are not recommended for use by Hashicorp because Configuration Management t
 
 [Local exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec)
 
-This will execute a command on the machine running the terraform comands eg. plan, apply.
+This will execute a command on the machine running the terraform commands eg. plan, apply.
 
 ```hcl
 resource "aws_instance" "web" {
@@ -359,3 +359,20 @@ resource "aws_instance" "web" {
   }
 }
 ```
+
+## For Each Expressions
+
+[Terraform for Expressions](https://developer.hashicorp.com/terraform/language/expressions/for)
+
+```hcl
+[for s in var.list : upper(s)]
+
+[for k, v in var.map : length(k) + length(v)]
+
+```
+
+[The for_each Meta-Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
+
+For each allows us to enumerate over complex data types.
+
+This is mostly useful when you are creating multiples of a cloud resource and you want to reduce the amount of repetitive terraform code.
