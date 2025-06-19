@@ -45,3 +45,12 @@ variable "content_version" {
     error_message = "The content_version must be a positive integer and greater than or equal to 1."
   }
 }
+variable "assets_path" {
+  description = "The absolute path to the directory containing assets (images, etc.) to be deployed."
+  type        = string
+
+    validation {
+    condition     = fileexists(var.assets_path)
+    error_message = "The specified assets path does not exist or is not accessible. Please provide a valid absolute path."
+  }
+}
