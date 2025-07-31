@@ -16,7 +16,7 @@ func main() {
 	fmt.Println("Hello, World!")
 
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: Provider
+		ProviderFunc: Provider,
 	})
 }
 
@@ -42,19 +42,19 @@ func Provider() *schema.Provider {
 				Type: schema.TypeString,
 				Required: true,
 				Description: "UUID for configuration",
-				ValidateFunc: validateUUID,
-			}
-		}
+				// ValidateFunc: validateUUID,
+			},
+		},
 	}
-	p.ConfigureContextFunc = providerConfigure(p)
+	// p.ConfigureContextFunc = providerConfigure(p)
 	return p
 }
 
-func validateUUID(v interface{}, k string) (ws []string, errors []error) {
-	log.Print("validateUUID:start")
-	value := v.(string)
-	if _, err := uuid.Parse(value); err != nil {
-		errors = append(error, fmt.Errorf("Invalid UUID format"))
-	}
-	log.Print("validateUUID:end")
-}
+// func validateUUID(v interface{}, k string) (ws []string, errors []error) {
+// 	log.Print("validateUUID:start")
+// 	value := v.(string)
+// 	if _, err := uuid.Parse(value); err != nil {
+// 		errors = append(error, fmt.Errorf("Invalid UUID format"))
+// 	}
+// 	log.Print("validateUUID:end")
+// }
