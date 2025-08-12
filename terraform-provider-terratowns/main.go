@@ -4,7 +4,6 @@ package main
 
 // "fmt": Is short for format, which provides I/O formatting functions.
 import (
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -13,7 +12,7 @@ import (
 func main() {
 	// Format.Printline
 	// Prints to standard output
-	fmt.Println("Hello, World!")
+	// fmt.Println("Hello, World!")
 
 	plugin.Serve(&plugin.ServeOpts{
 		ProviderFunc: Provider,
