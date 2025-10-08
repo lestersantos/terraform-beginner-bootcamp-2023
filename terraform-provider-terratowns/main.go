@@ -149,7 +149,7 @@ func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interfac
   }
 
   // Construct the HTTP Request
-  url := config.Endpoint+"/u/"+config.UserUuid+"/api/homes"
+  url := config.Endpoint+"/u/"+config.UserUuid+"/homes"
   log.Print("->URL:"+url)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payloadBytes))
   if err != nil {
@@ -198,7 +198,9 @@ func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{
   homeUUID := d.Id()
 
   // Construct the HTTP Request
-	req, err := http.NewRequest("GET", config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID, nil)
+  url := config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID
+  log.Print("->URL:"+url)
+	req, err := http.NewRequest("GET", url , nil)
   if err != nil {
     return diag.FromErr(err)
   }
@@ -224,7 +226,7 @@ func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{
     d.Set("name",responseData["name"].(string))
     d.Set("description",responseData["description"].(string))
     d.Set("domain_name",responseData["domain_name"].(string))
-    d.Set("content_version",responseData["content_version"].(int))
+    d.Set("content_version",responseData["content_version"].(float64))
   }else if resp.StatusCode != http.StatusNotFound {
     d.SetId("")
   }else if resp.StatusCode != http.StatusOK {
@@ -256,7 +258,9 @@ func resourceHouseUpdate(ctx context.Context, d *schema.ResourceData, m interfac
   }
 
   // Construct the HTTP Request
-	req, err := http.NewRequest("PUT", config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID, bytes.NewBuffer(payloadBytes))
+  url := config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID
+  log.Print("->URL:"+url)
+	req, err := http.NewRequest("PUT", url , bytes.NewBuffer(payloadBytes))
   if err != nil {
     return diag.FromErr(err)
   }
@@ -294,7 +298,9 @@ func resourceHouseDelete(ctx context.Context, d *schema.ResourceData, m interfac
   homeUUID := d.Id()
 
   // Construct the HTTP Request
-	req, err := http.NewRequest("DELETE", config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID, nil)
+  url := config.Endpoint+"/u/"+config.UserUuid+"/homes/"+homeUUID
+  log.Print("->URL:"+url)
+	req, err := http.NewRequest("DELETE", url, nil)
   if err != nil {
     return diag.FromErr(err)
   }
